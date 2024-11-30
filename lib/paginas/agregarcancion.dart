@@ -12,25 +12,25 @@ class agregarcancion extends StatefulWidget {
 }
 
 class _agregarcancionState extends State<agregarcancion> {
-  final TextEditingController _tituloController = TextEditingController();
-  final TextEditingController _artistaController = TextEditingController();
-  final TextEditingController _lyricsController = TextEditingController();
+  final TextEditingController _tituloController= TextEditingController();
+  final TextEditingController _artistaController= TextEditingController();
+  final TextEditingController _lyricsController= TextEditingController();
 
-  bool _isLoading = false;
+  bool _isLoading=false;
+
 
   void saveCancion() async {
     setState(() {
-      _isLoading = true;
+      _isLoading= true;
     });
 
-    final lyrics = await LyricsAPI.fetchLyrics(
+    final lyrics= await LyricsAPI.fetchLyrics(
       _artistaController.text,
       _tituloController.text,
     );
 
-    _lyricsController.text = lyrics ?? 'No se encontraron letras.';
-
-    final cancion = Cancion(
+    _lyricsController.text= lyrics ?? 'No se encontraron letras.';
+    final cancion=Cancion(
       titulo: _tituloController.text,
       artista: _artistaController.text,
       lyrics: _lyricsController.text,
@@ -39,11 +39,13 @@ class _agregarcancionState extends State<agregarcancion> {
     widget.onSave(cancion);
 
     setState(() {
-      _isLoading = false;
+      _isLoading=false;
     });
 
     Navigator.pop(context);
   }
+
+
 
   @override
   Widget build(BuildContext context) {

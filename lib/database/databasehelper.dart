@@ -6,7 +6,7 @@ import 'package:letras/models/cancion.dart';
 
 
 class databasehelper {
-  static final databasehelper instance = databasehelper._init();
+  static final databasehelper instance= databasehelper._init();
 
   static Database? _database;
 
@@ -26,6 +26,8 @@ class databasehelper {
 
     return await openDatabase(pathToDB, version: 1, onCreate: _onCreate);
   }
+
+
 
   Future _onCreate(Database db, int version) async {
     const idType='INTEGER PRIMARY KEY AUTOINCREMENT';

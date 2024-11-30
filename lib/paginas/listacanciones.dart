@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+
+
 import 'package:letras/database/databasehelper.dart';
 import 'package:letras/models/cancion.dart';
+import 'package:letras/estilo_idioma/detallecancion.dart';
+
 
 class listacanciones extends StatefulWidget {
   const listacanciones({Key? key}) : super(key: key);
@@ -24,6 +28,7 @@ class _listacancionesState extends State<listacanciones> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +38,7 @@ class _listacancionesState extends State<listacanciones> {
       body: FutureBuilder<List<Cancion>>(
         future: _canciones,
         builder: (context, snapshot) {
-          if (snapshot.connectionState== ConnectionState.waiting) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           }
 
@@ -43,29 +48,22 @@ class _listacancionesState extends State<listacanciones> {
 
           final canciones=snapshot.data!;
 
-
-
           return ListView.builder(
             itemCount: canciones.length,
             itemBuilder: (context, index) {
-              final cancion = canciones[index];
+              final cancion= canciones[index];
               return ListTile(
                 title: Text(cancion.titulo),
                 subtitle: Text(cancion.artista),
                 onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) => AlertDialog(
-                      title: Text(cancion.titulo),
-                      content: Text(cancion.lyrics),
-                      actions: <Widget>[
-                        TextButton(
-                          child: const Text('Cerrar'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetalleCancion(
+                        titulo: cancion.titulo,
+                        artista: cancion.artista,
+                        letra: cancion.lyrics,
+                      ),
                     ),
                   );
                 },

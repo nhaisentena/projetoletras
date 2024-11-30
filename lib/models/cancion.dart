@@ -4,6 +4,8 @@ class Cancion {
   final String artista;
   final String lyrics;
 
+  var letra;
+
   Cancion({
     this.id,
     required this.titulo,

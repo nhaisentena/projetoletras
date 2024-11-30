@@ -1,7 +1,7 @@
 name: letras
 description: A new Flutter project.
 
-publish_to: 'none' # This tells pub not to publish to pub.dev.
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   sqflite: ^2.0.0
-  sqflite_common_ffi_web: any # Agrega esto para que funcione en la web
+  sqflite_common_ffi_web: any
   path_provider: ^2.0.15
   http: ^1.0.0
   cupertino_icons: ^1.0.8
